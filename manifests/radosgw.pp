@@ -31,7 +31,6 @@ class ceph::radosgw (
   $keystone_revocation_interval = 600,
   $nss_db_path                  = '/var/lib/ceph/nss',
   $package_ensure               = 'present',
-  $configure_apache             = false,
   $bind_address                 = '0.0.0.0',
   $fastcgi_ext_script           = '/var/www/s3gw.fcgi',
   $socket                       = '/var/run/ceph/radosgw.sock',
@@ -76,20 +75,6 @@ class ceph::radosgw (
 
   package { 'radosgw':
     ensure => $package_ensure
-  }
-
-  if $configure_apache {
-    class { 'ceph::radosgw::apache':
-      bind_address       => $bind_address,
-      listen_ssl         => $listen_ssl,
-      radosgw_cert_file  => $radosgw_cert_file,
-      radosgw_key_file   => $radosgw_key_file,
-      radosgw_ca_file    => $radosgw_ca_file,
-      fastcgi_ext_script => $fastcgi_ext_script,
-      fastcgi_ext_socket => $socket,
-      serveradmin_email  => $gw_serveradmin_email,
-      server_name        => $gw_server_name,
-    }
   }
 
   ##
