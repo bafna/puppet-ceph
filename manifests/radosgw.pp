@@ -26,7 +26,7 @@ class ceph::radosgw (
   $keystone_url,
   $keystone_admin_token,
   $mon_key,
-  $keystone_accepted_roles      = '_member_, admin, swiftoperator',
+  $keystone_accepted_roles      = '_member_, admin, swiftoperator,member',
   $keystone_token_cache_size    = 500,
   $keystone_revocation_interval = 600,
   $nss_db_path                  = '/var/lib/ceph/nss',
